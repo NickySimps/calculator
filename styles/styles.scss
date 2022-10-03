@@ -1,0 +1,92 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  font-size: 1.35em;
+  * {
+    margin: 3px;
+    border-radius: 9px;
+  }
+  .calculator-body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    width: 50vw;
+    height: auto;
+    p {
+      margin-top: 27%;
+    }
+    .screen {
+      background-color: seashell;
+      margin: 15px;
+      display: flex;
+      width: 90%;
+      height: 20%;
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex-wrap: nowrap;
+      flex-direction: row;
+    }
+    .operators {
+      outline: 1px solid orange;
+      background-color: lightsalmon;
+      font-size: 0.9em;
+      width: 15%;
+      height: 80%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-evenly;
+      padding: 3px;
+      .operator {
+        text-align: center;
+        outline: 1px solid lightcoral;
+        background: lightsalmon;
+        box-shadow: inset coral 1px 1px, 4px 4px salmon;
+        height: 13%;
+      }
+    }
+    .numbers {
+      outline: 1px solid pink;
+      background: silver;
+      display: flex;
+      flex-flow: row wrap;
+      width: 75%;
+      height: 80%;
+      padding: 5px;
+
+      .digit {
+        outline: 1px solid royalblue;
+        background-color: lightblue;
+        height: 23%;
+        font-weight: bold;
+        width: 30%;
+        text-align: center;
+        align-items: center;
+        box-shadow: inset 1px 1px   skyblue, 4px 4px dodgerblue;
+      }
+      .clear-calc {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        text-align: center;
+        width: 64%;
+
+        div {
+          outline: 1px solid goldenrod;
+          background-color: yellow;
+          box-shadow: inset gold 1px 1px, 4px 4px darkgoldenrod;
+          width: 45%;
+          height: 95%;
+        }
+        
+      }
+    }
+  }
+}
+p{
+    user-select: none;
+}
+

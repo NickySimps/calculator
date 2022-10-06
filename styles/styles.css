@@ -3,12 +3,14 @@
   justify-content: center;
   align-items: center;
   font-family: monospace;
-  font-size: 1.35em;
+  background: linear-gradient(45deg, rgb(165, 237, 234), cornsilk 61%, rgb(243, 185, 227));
+  height: 100vh;
+  width: 100vw;
 }
 .main-container * {
   margin: auto;
   border-radius: 9px;
-  gap: 6px;
+  gap: 3px;
 }
 .main-container .calculator-body {
   display: grid;
@@ -30,6 +32,8 @@
   font-size: 1.5em;
   margin: 15px;
   display: flex;
+  align-self: center;
+  justify-self: center;
   grid-column-start: 1;
   grid-column-end: 3;
   width: 90%;

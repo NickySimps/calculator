@@ -19,6 +19,42 @@ let solution;
 memory.textContent = "";
 output.textContent = "";
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ANIMATIONS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let calculatorShake = anime({
+  targets: ".calculator-body",
+  translateY: [
+    { value: 1000, duration: 500 },
+    { value: 0, duration: 1000 },
+  ],
+  rotate: [
+    { value: 0, delay: 1000, duration: 250 },
+    { value: 45, duration: 400, easing: "easeInOutSine" },
+    { value: -45, duration: 400, easing: "easeInOutSine" },
+    { value: 25, duration: 250, easing: "easeInOutSine" },
+    { value: -25, duration: 150, easing: "easeInOutSine" },
+    { value: 15, duration: 150, easing: "easeInOutSine" },
+    { value: -15, duration: 100, easing: "easeInOutSine" },
+    { value: 0, duration: 100, easing: "easeInOutElastic(7,1.1)" },
+  ],
+  loop: 1,
+  easing: "easeOutElastic(4,1.2)",
+});
+
+let clearAll = anime({
+  targets: [".operator", ".digit", ".screen"],
+  backgroundColor: [
+    {value: "rgb(65,165, 225)", duration:50},
+    {value: "rgb(240,128,128)", delay:75, duration:100},
+],
+  scale: 1.08,
+  loop: 1,
+  duration: 80,
+  autoplay: false,
+  direction: "alternate",
+  fontSize: "-=0.4em",
+  easing: 'easeInOutSine',
+  delay: anime.stagger(350 / 18),
+});
+
 let digitPress = anime({
   targets: [".digit"],
   translateX: [{ value: 4, duration: 1000 / 10 }],
@@ -31,8 +67,8 @@ let digitPress = anime({
   loop: 4,
   direction: "alternate",
   easing: "easeInOutCubic",
-  delay: anime.stagger(250, { grid: [3, 3], from: "center" }),
-  duration: 500 / 10,
+  delay: anime.stagger(100),
+  duration: 100,
 });
 let clearCalcPress = anime({
   targets: [".clearBtn", ".calcBtn"],
@@ -125,220 +161,183 @@ for (let digit of digits) {
   });
 }
 decimalPoint.addEventListener("click", () => {
-  if (output.textContent == "") {
-    output.textContent = 0 + decimalPoint.innerText;
-  } else {
-    output.textContent += decimalPoint.innerText;
-  }
+  output.textContent == ""
+    ? (output.textContent = 0 + decimalPoint.innerText)
+    : output.textContent.includes(".")
+    ? false
+    : (output.textContent += decimalPoint.innerText);
 });
 
 add.addEventListener("click", (e) => {
   if (output.textContent == "" && memory.textContent == "") {
-    output.textContent = "ERROR"
-  } else if(output.textContent !== ""){
+    output.textContent = "ERROR";
+  } else if (output.textContent !== "") {
     if (operation1 == null) {
       operand1 = parseFloat(output.textContent);
       operation1 = addition;
-      memory.textContent = (operand1 + e.target.textContent);
+      memory.textContent = operand1 + e.target.textContent;
       output.textContent = "";
     } else if (memory.textContent !== "") {
-    operand1 = parseFloat(memory.textContent);
-    operand2 = parseFloat(output.textContent);
-    operation1 = addition;
-    solution = operation1(operand1,operand2);
-    memory.textContent = solution+e.target.textContent;
-    output.textContent = '';
-  } else {
+      operand1 = parseFloat(memory.textContent);
+      operand2 = parseFloat(output.textContent);
+      solution = operation1(operand1, operand2);
+      memory.textContent = solution + e.target.textContent;
+      operation1 = addition;
+      output.textContent = "";
+    } else {
       operand2 = parseFloat(output.textContent);
       operation2 = addition;
-      memory.textContent = operation2(operand1, operand2) + e.target.textContent;
+      memory.textContent =
+        operation2(operand1, operand2) + e.target.textContent;
       output.textContent = "";
     }
-
+  } else if (output.textContent == "" && memory.textContent !== "") {
+    operand1 = parseFloat(memory.textContent);
+    memory.textContent = operand1 + e.target.textContent;
+    operation1 = addition;
   }
 });
 subtract.addEventListener("click", (e) => {
   if (output.textContent == "" && memory.textContent == "") {
-    output.textContent = "ERROR"
-  } else if(output.textContent !== ""){
+    output.textContent = "ERROR";
+  } else if (output.textContent !== "") {
     if (operation1 == null) {
       operand1 = parseFloat(output.textContent);
       operation1 = subtraction;
-      memory.textContent = (operand1 + e.target.textContent);
+      memory.textContent = operand1 + e.target.textContent;
       output.textContent = "";
     } else if (memory.textContent !== "") {
-    operand1 = parseFloat(memory.textContent);
-    operand2 = parseFloat(output.textContent);
-    operation1 = subtraction;
-    solution = operation1(operand1,operand2);
-    memory.textContent = solution+e.target.textContent;
-    output.textContent = '';
-  } else {
+      operand1 = parseFloat(memory.textContent);
+      operand2 = parseFloat(output.textContent);
+      solution = operation1(operand1, operand2);
+      memory.textContent = solution + e.target.textContent;
+      operation1 = subtraction;
+      output.textContent = "";
+    } else {
       operand2 = parseFloat(output.textContent);
       operation2 = subtraction;
-      memory.textContent = operation2(operand1, operand2) + e.target.textContent;
+      memory.textContent =
+        operation2(operand1, operand2) + e.target.textContent;
       output.textContent = "";
     }
-
+  } else if (output.textContent == "" && memory.textContent !== "") {
+    operand1 = parseFloat(memory.textContent);
+    memory.textContent = operand1 + e.target.textContent;
+    operation1 = subtraction;
   }
 });
 multiply.addEventListener("click", (e) => {
   if (output.textContent == "" && memory.textContent == "") {
-    output.textContent = "ERROR"
-  } else if(output.textContent !== ""){
+    output.textContent = "ERROR";
+  } else if (output.textContent !== "") {
     if (operation1 == null) {
       operand1 = parseFloat(output.textContent);
       operation1 = multiplication;
-      memory.textContent = (operand1 + e.target.textContent);
+      memory.textContent = operand1 + e.target.textContent;
       output.textContent = "";
     } else if (memory.textContent !== "") {
-    operand1 = parseFloat(memory.textContent);
-    operand2 = parseFloat(output.textContent);
-    operation1 = multiplication;
-    solution = operation1(operand1,operand2);
-    memory.textContent = solution+e.target.textContent;
-    output.textContent = '';
-  } else {
+      operand1 = parseFloat(memory.textContent);
+      operand2 = parseFloat(output.textContent);
+      solution = operation1(operand1, operand2);
+      memory.textContent = solution + e.target.textContent;
+      operation1 = multiplication;
+      output.textContent = "";
+    } else {
       operand2 = parseFloat(output.textContent);
       operation2 = multiplication;
-      memory.textContent = operation2(operand1, operand2) + e.target.textContent;
+      memory.textContent =
+        operation2(operand1, operand2) + e.target.textContent;
       output.textContent = "";
     }
+  } else if (output.textContent == "" && memory.textContent !== "") {
+    operand1 = parseFloat(memory.textContent);
+    memory.textContent = operand1 + e.target.textContent;
+    operation1 = multiplication;
   }
 });
 divide.addEventListener("click", (e) => {
   if (output.textContent == "" && memory.textContent == "") {
-    output.textContent = "ERROR"
-  } else if(output.textContent !== ""){
+    output.textContent = "ERROR";
+  } else if (output.textContent !== "") {
     if (operation1 == null) {
       operand1 = parseFloat(output.textContent);
       operation1 = division;
-      memory.textContent = (operand1 + e.target.textContent);
+      memory.textContent = operand1 + e.target.textContent;
       output.textContent = "";
     } else if (memory.textContent !== "") {
-    operand1 = parseFloat(memory.textContent);
-    operand2 = parseFloat(output.textContent);
-    operation1 = division;
-    solution = operation1(operand1,operand2);
-    memory.textContent = solution+e.target.textContent;
-    output.textContent = '';
-  } else {
+      operand1 = parseFloat(memory.textContent);
+      operand2 = parseFloat(output.textContent);
+      solution = operation1(operand1, operand2);
+      memory.textContent = solution + e.target.textContent;
+      operation1 = division;
+      output.textContent = "";
+    } else {
       operand2 = parseFloat(output.textContent);
       operation2 = division;
-      memory.textContent = operation2(operand1, operand2) + e.target.textContent;
+      memory.textContent =
+        operation2(operand1, operand2) + e.target.textContent;
       output.textContent = "";
     }
+  } else if (output.textContent == "" && memory.textContent !== "") {
+    operand1 = parseFloat(memory.textContent);
+    memory.textContent = operand1 + e.target.textContent;
+    operation1 = division;
   }
 });
 power.addEventListener("click", (e) => {
   if (output.textContent == "" && memory.textContent == "") {
-    output.textContent = "ERROR"
-  } else if(output.textContent !== ""){
+    output.textContent = "ERROR";
+  } else if (output.textContent !== "") {
     if (operation1 == null) {
       operand1 = parseFloat(output.textContent);
       operation1 = powerOfNum;
-      memory.textContent = (operand1 + e.target.textContent);
+      memory.textContent = operand1 + e.target.textContent;
       output.textContent = "";
     } else if (memory.textContent !== "") {
-    operand1 = parseFloat(memory.textContent);
-    operand2 = parseFloat(output.textContent);
-    operation1 = powerOfNum;
-    solution = operation1(operand1,operand2);
-    memory.textContent = solution+e.target.textContent;
-    output.textContent = '';
-  } else {
+      operand1 = parseFloat(memory.textContent);
+      operand2 = parseFloat(output.textContent);
+      solution = operation1(operand1, operand2);
+      memory.textContent = solution + e.target.textContent;
+      operation1 = powerOfNum;
+      output.textContent = "";
+    } else {
       operand2 = parseFloat(output.textContent);
       operation2 = powerOfNum;
-      memory.textContent = operation2(operand1, operand2) + e.target.textContent;
+      memory.textContent =
+        operation2(operand1, operand2) + e.target.textContent;
       output.textContent = "";
     }
+  } else if (output.textContent == "" && memory.textContent !== "") {
+    operand1 = parseFloat(memory.textContent);
+    memory.textContent = operand1 + e.target.textContent;
+    operation1 = powerOfNum;
   }
 });
-// subtract.addEventListener("click", () => {
-//   operation1 = (operand1, operand2) => {
-//     return operand1 - operand2;
-//   }
-//   if (operand1 == "") {
-//     operand1 = parseFloat(output.textContent);
-//     output.textContent = "";
-//   } else {
-//     operand2 = parseFloat(output.textContent);
-//     solution = operation1(operand1, operand2);
-//     operand1 = solution;
-//     operand2 = "";
-//     output.textContent = "";
-//   }
-// });
-// multiply.addEventListener("click", () => {
-//   operation1 = (operand1, operand2) => {
-//     return operand1 * operand2;
-//   }
-//   if (operand1 == "") {
-//     operand1 = parseFloat(output.textContent);
-//     output.textContent = "";
-//   } else {
-//     operand2 = parseFloat(output.textContent);
-//     solution = operation1(operand1, operand2);
-//     operand1 = solution;
-//     operand2 = "";
-//     output.textContent = "";
-//   }
-// });
-// divide.addEventListener("click", () => {
-//   operation1 = (operand1, operand2) => {
-//     return operand1 / operand2;
-//   }
-//   if (operand1 == "") {
-//     operand1 = parseFloat(output.textContent);
-//     output.textContent = "";
-//   } else {
-//     operand2 = parseFloat(output.textContent);
-//     solution = operation1(operand1, operand2);
-//     operand1 = solution;
-//     operand2 = "";
-//     output.textContent = "";
-//   }
-// });
-// power.addEventListener("click", () => {
-//   operation1 = (operand1, operand2) => {
-//     return Math.pow(operand1, operand2);
-//   }
-//   if (operand1 == "") {
-//     operand1 = parseFloat(output.textContent);
-//     output.textContent = "";
-//   } else {
-//     operand2 = parseFloat(output.textContent);
-//     solution = operation1(operand1, operand2);
-//     operand1 = solution;
-//     operand2 = "";
-//     output.textContent = "";
-//   }
-// });
 posNeg.addEventListener("click", () => {
   output.textContent = negativeNum(output.textContent);
 });
 clearBtn.addEventListener("click", () => {
+  clearAll.play();
   operand1 = "";
   operand2 = "";
   solution = "";
   operation1 = null;
+  operation2 = null;
   output.textContent = "";
   memory.textContent = "";
   console.log("reset");
 });
 calcBtn.addEventListener("click", () => {
-
   operand1 = parseFloat(memory.textContent);
   operand2 = parseFloat(output.textContent);
   solution = operation1(operand1, operand2);
   console.log(solution);
-  output.textContent = '';
+  output.textContent = "";
   operand1 = solution;
-  memory.textContent = solution;
-
+  memory.textContent = parseFloat(solution).toFixed(4);
 });
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~MATH FUNCTIONS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function addition(num1, num2) {
   return num1 + num2;
 }

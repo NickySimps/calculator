@@ -1,44 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <script src="/node_modules/animejs/lib/anime.min.js"></script>
-    <script src="script.js" defer></script>
-    <title>Calculatron</title>
-  </head>
-  <body>
-    <div class="main-container">
-      <div class="calculator-body">
-        <div class="screen"><span class="output"></span></div>
-        <div class="operators">
-          <div class="operator"><p>.</p></div>
-          <div class="operator"><p>+/-</p></div>
-          <div class="operator"><p>+</p></div>
-          <div class="operator"><p>-</p></div>
-          <div class="operator"><p>x</p></div>
-          <div class="operator"><p>&divide;</p></div>
-          <div class="operator"><p>^pow</p></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="/node_modules/animejs/lib/anime.min.js"></script>
+  <script src="script.js" defer></script>
+  <title>Calculatron</title>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="calculator-body">
+      <div class="screen">
+        <div>
+          <span class="memory-storage">123</span>
+
         </div>
-        <div class="numbers">
-          <div class="digit"><p>1</p></div>
-          <div class="digit"><p>2</p></div>
-          <div class="digit"><p>3</p></div>
-          <div class="digit"><p>4</p></div>
-          <div class="digit"><p>5</p></div>
-          <div class="digit"><p>6</p></div>
-          <div class="digit"><p>7</p></div>
-          <div class="digit"><p>8</p></div>
-          <div class="digit"><p>9</p></div>
-          <div class="digit"><p>0</p></div>
-          <div class="clear-calc">
-            <div class="clearBtn"><p>CLEAR</p></div>
-            <div class="calcBtn"><p>=</p></div>
+        <div>
+          <span class="output">456</span>
+
+        </div>
+      </div>
+      <div class="operators">
+        <div class="operator">
+          .
+        </div>
+        <div class="operator">
+          +/-
+        </div>
+        <div class="operator">
+          +
+        </div>
+        <div class="operator">
+          -
+        </div>
+        <div class="operator">
+          x
+        </div>
+        <div class="operator">
+          &divide;
+        </div>
+        <div class="operator">
+          ^pow
+        </div>
+      </div>
+      <div class="numbers">
+        <div class="digit">
+          1
+        </div>
+        <div class="digit">
+          2
+        </div>
+        <div class="digit">
+          3
+        </div>
+        <div class="digit">
+          4
+        </div>
+        <div class="digit">
+          5
+        </div>
+        <div class="digit">
+          6
+        </div>
+        <div class="digit">
+          7
+        </div>
+        <div class="digit">
+          8
+        </div>
+        <div class="digit">
+          9
+        </div>
+        <div class="digit">
+          0
+        </div>
+        <div class="clear-calc">
+          <div class="clearBtn">
+            CLEAR
+          </div>
+          <div class="calcBtn">
+            =
           </div>
         </div>
       </div>
     </div>
-  </body>
+
+  </div>
+  </div>
+</body>
+
 </html>

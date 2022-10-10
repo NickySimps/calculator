@@ -5,9 +5,9 @@
   font-family: monospace;
   background: linear-gradient(45deg,  rgb(165, 237, 234) , cornsilk  61%, rgb(243, 185, 227));
   //font-size: 1.35em;
-  height: 90%;
+  height: max(800px, 100vh);
   width: 100vw;
-  padding: 40px 0px;
+  padding:3vh 0px;
   * {
     margin: auto;
     border-radius: 9px;
@@ -21,10 +21,9 @@
     justify-content: center;
     align-items: center;
     background-color: lightgray;
-    width: 60vw;
-    max-width: 600px;
-    box-shadow: 0px 0px 2px hotpink;
-    height: auto;
+    width: min(450px, 100vw);
+    box-shadow: 0px 0px 2px  hotpink;
+    height: max(500px, 70vh);
     padding: 15px;
     p {
       margin-top: 27%;
@@ -77,7 +76,7 @@
         box-shadow: inset coral 2px 2px, 4px 4px salmon;
         height: 90%;
         width: 90%;
-        line-height: 500%;
+        line-height: 250%;
 
       }
     }
@@ -99,7 +98,7 @@
         background-color: lightblue;
         height: 85%;
         font-weight: bold;
-        font-size: medium;
+        font-size: 2rem;
         width: 90%;
         text-align: center;
         align-items: center;
@@ -135,19 +134,26 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height:100vh;
   width: 100vw;
 }
 .header, .footer{
   text-align: center;
   display: block;
-  height: auto;
+  height: 50px;
   margin: 2px 2px;
   background: linear-gradient(-45deg,  rgb(165, 237, 234) 0 45% , cornsilk  45% 51%, rgb(243, 185, 227) 51%);
   font-family: 'Dongle', monospace;
-  font-size: xx-large;
+  font-size: inherit;
   font-weight: lighter;
   margin: 10px 0px;
-  text-shadow: 0px 0px 2px white;
+  text-shadow: 2px 2px  2px  hotpink;
+  z-index: 1;
 }
-
+.header{
+  font-size:x-large;
+}
+.footer{
+  font-size: small;
+  
+}

@@ -22,7 +22,7 @@ output.textContent = "";
 let calculatorShake = anime({
   targets: ".calculator-body",
   translateY: [
-    { value: 1000, duration: 500 },
+    { value: 1000, duration: 0 },
     { value: 0, duration: 1000 },
   ],
   rotate: [

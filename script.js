@@ -187,6 +187,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BUTTON BEHAVIOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Helper to reset calculator state

@@ -8,26 +8,32 @@
   width: 100vw;
   padding: 3vh 0px;
 }
+
 .main-container * {
   margin: auto;
   border-radius: 9px;
   gap: 3px;
 }
+
 .main-container .calculator-body {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  /* Column 1 for scientific, Column 2 for standard+numbers */
   grid-template-rows: 1fr 4fr;
+  /* Row 1 for screen, Row 2 for buttons */
   justify-content: center;
   align-items: center;
   background-color: lightgray;
-  width: min(450px, 100vw);
+  width: min(550px, 100vw);
   box-shadow: 0px 0px 2px hotpink;
   height: max(500px, 70vh);
   padding: 15px;
 }
+
 .main-container .calculator-body p {
   margin-top: 27%;
 }
+
 .main-container .calculator-body .screen {
   background-color: seashell;
   font-family: "Press Start 2P", monospace;
@@ -37,8 +43,10 @@
   display: flex;
   align-self: center;
   justify-self: center;
-  grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column: 1 / span 2;
+  /* Screen spans both columns */
+  grid-row: 1;
+  /* Screen is in the first row */
   width: 90%;
   height: 85%;
   justify-content: flex-end;
@@ -47,26 +55,112 @@
   text-align: right;
   flex-direction: column;
 }
+
 .main-container .calculator-body .screen .memory-storage {
   font-size: smaller;
 }
-.main-container .calculator-body .screen div, .main-container .calculator-body .screen span {
+
+.main-container .calculator-body .screen div,
+.main-container .calculator-body .screen span {
   display: flex;
   overflow-wrap: break-word;
   width: 100%;
   justify-content: flex-end;
 }
-.main-container .calculator-body .operators {
-  outline: 1px solid orange;
-  background-color: lightsalmon;
-  font-size: medium;
+
+.main-container .calculator-body .scientific-operators {
+  grid-column: 1;
+  /* Scientific ops in the first column */
+  grid-row: 2;
+  /* Scientific ops in the second row */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns for scientific buttons */
+  gap: 5px;
+  padding: 5px;
+  background-color: lightblue;
+  /* Example background */
+  outline: 1px solid blue;
   width: 95%;
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(7, 1fr);
-  padding: 3px 5px;
+  margin: auto;
+  align-items: center;
+  /* Center buttons vertically */
+  justify-items: center;
+  /* Center buttons horizontally */
 }
+
+.main-container .calculator-body .scientific-operators .operator {
+  height: 90%;
+  /* Adjust as needed */
+  width: 90%;
+  /* Adjust as needed */
+  line-height: 100%;
+  /* Adjust line height for smaller buttons */
+  font-size: x-small;
+  /* Smaller font size */
+  padding: 2px;
+  /* Add padding */
+  box-shadow: inset skyblue 1px 1px, 2px 2px dodgerblue;
+  /* Adjust shadow */
+  background: lightblue;
+  /* Match container background */
+  outline: 1px solid royalblue;
+  /* Match container outline */
+}
+
+.main-container .calculator-body .standard-buttons {
+  grid-column: 2;
+  /* Standard buttons in the second column of calculator-body */
+  grid-row: 2;
+  /* Standard buttons in the second row of calculator-body */
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  /* Column 1 for operators, Column 2 for numbers */
+  gap: 5px;
+  padding: 5px;
+  background-color: silver;
+  /* Match numbers background */
+  outline: 1px solid pink;
+  /* Match numbers outline */
+  width: 95%;
+  height: 100%;
+  margin: auto;
+}
+
+.main-container .calculator-body .operators {
+  grid-column: 1;
+  /* Operators in the first column of standard-buttons */
+  grid-row: 1;
+  /* Operators in the first row of standard-buttons (spans height) */
+  outline: 1px solid orange;
+  /* Keep outline */
+  background-color: lightsalmon;
+  /* Keep background */
+  font-size: medium;
+  /* Keep font size */
+  display: grid;
+  /* Keep grid for buttons inside */
+  grid-template-columns: 1fr;
+  /* Keep single column */
+  grid-template-rows: repeat(6, 1fr);
+  /* 6 rows for 6 buttons */
+  gap: 5px;
+  /* Add gap between operator buttons */
+  padding: 3px 5px;
+  align-items: center;
+  /* Center buttons vertically */
+  justify-items: center;
+  /* Center buttons horizontally */
+  height: 100%;
+  /* Fill the height of its grid cell in .standard-buttons */
+  width: 100%;
+  /* Fill the width of its grid cell in .standard-buttons */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
+
+}
+
 .main-container .calculator-body .operators .operator {
   text-align: center;
   outline: 1px solid lightcoral;
@@ -74,31 +168,60 @@
   box-shadow: inset coral 2px 2px, 4px 4px salmon;
   height: 90%;
   width: 90%;
-  line-height: 250%;
+  line-height: 100%;
+  /* Adjust line height */
 }
+
 .main-container .calculator-body .numbers {
+  grid-column: 2;
+  /* Numbers in the second column of standard-buttons */
+  grid-row: 1;
+  /* Numbers in the first row of standard-buttons (spans height) */
   outline: 1px solid pink;
+  /* Keep outline */
   background: silver;
+  /* Keep background */
   display: grid;
+  /* Keep grid for buttons inside */
   grid-template-columns: 1fr 1fr 1fr;
+  /* Keep 3 columns for digits */
   grid-template-rows: repeat(4, 1fr);
-  width: 95%;
-  margin: 0px 8px;
-  height: 100%;
+  /* 4 rows for digits and clear/calc */
+  gap: 5px;
+  /* Add gap between number buttons */
   padding: 5px;
-  line-height: 500%;
+  height: 100%;
+  /* Fill the height of its grid cell in .standard-buttons */
+  width: 100%;
+  /* Fill the width of its grid cell in .standard-buttons */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
+
+  /* line-height: 500%; Removed as it can interfere with grid item sizing */
 }
+
 .main-container .calculator-body .numbers .digit {
   outline: 1px solid royalblue;
   background-color: lightblue;
-  height: 85%;
+  height: 100%;
+  /* Fill the height of the grid cell */
   font-weight: bold;
   font-size: 2rem;
-  width: 90%;
-  text-align: center;
-  align-items: center;
+  width: 100%;
+  /* Fill the width of the grid cell */
   box-shadow: inset 1px 1px skyblue, 4px 4px dodgerblue;
+  text-align: center;
+  /* Keep text align */
+  align-items: center;
+  /* Keep align items */
+  display: flex;
+  /* Use flex to center content */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
 }
+
 .main-container .calculator-body .numbers .clear-calc {
   display: flex;
   grid-column: 2/span 2;
@@ -107,22 +230,49 @@
   text-align: center;
   font-size: medium;
   font-weight: bolder;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  /* Fill the grid cell width */
+  height: 100%;
+  /* Fill the grid cell height */
+  margin: auto;
+  /* Center within the cell */
 }
-.main-container .calculator-body .numbers .clear-calc div {
+
+/* Style for buttons within clear-calc */
+.main-container .calculator-body .numbers .clear-calc button {
+  width: 45%;
+  /* Keep original width ratio */
+  height: 100%;
+  /* Fill parent div */
+  margin: 0;
+  /* Remove margin */
+  border-radius: 9px;
+  /* Keep border radius */
+  font-size: inherit;
+  /* Inherit font size from parent div */
+  font-weight: inherit;
+  /* Inherit font weight from parent div */
+  text-align: center;
+  /* Center text */
+  display: flex;
+  /* Use flex to center content */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+}
+
+.main-container .calculator-body .numbers .clear-calc .clearBtn {
   outline: 1px solid goldenrod;
   background-color: yellow;
   box-shadow: inset gold 1px 1px, 4px 4px darkgoldenrod;
-  width: 45%;
-  height: 95%;
 }
 
 p {
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -133,7 +283,8 @@ body {
   width: 100vw;
 }
 
-.header, .footer {
+.header,
+.footer {
   text-align: center;
   display: block;
   height: 50px;
@@ -154,4 +305,6 @@ body {
 
 .footer {
   font-size: small;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */

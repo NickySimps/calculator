@@ -17,89 +17,102 @@
 </head>
 
 <body>
-  <div class="header">
+  <header class="header">
     Behold the Amazing <strong>Calculatron!</strong>
-  </div>
-  <div class="main-container">
+  </header>
+  <main class="main-container">
     <div class="calculator-body">
       <div class="screen">
-        <div>
-          <span class="memory-storage">123</span>
-
-        </div>
-        <div>
-          <span class="output">456</span>
-
-        </div>
+        <div class="memory-storage" aria-live="polite">123</div>
+        <div class="output" aria-live="polite">456</div>
       </div>
-      <div class="operators">
-        <div class="operator">
-          .
-        </div>
-        <div class="operator">
-          +/-
-        </div>
-        <div class="operator">
-          +
-        </div>
-        <div class="operator">
-          -
-        </div>
-        <div class="operator">
-          x
-        </div>
-        <div class="operator">
-          &divide;
-        </div>
-        <div class="operator">
-          ^pow
-        </div>
+      <div class="scientific-operators">
+        <button type="button" class="operator sci-op" id="degBtn">DEG</button>
+        <button type="button" class="operator sci-op" id="radBtn" disabled>RAD</button> <!-- RAD is default -->
+        <button type="button" class="operator sci-op" data-op="sin">sin</button>
+        <button type="button" class="operator sci-op" data-op="cos">cos</button>
+        <button type="button" class="operator sci-op" data-op="tan">tan</button>
+        <button type="button" class="operator sci-op" data-op="asin">sin<sup>-1</sup></button>
+        <button type="button" class="operator sci-op" data-op="acos">cos<sup>-1</sup></button>
+        <button type="button" class="operator sci-op" data-op="atan">tan<sup>-1</sup></button>
+        <button type="button" class="operator sci-op" data-op="ln">ln</button>
+        <button type="button" class="operator sci-op" data-op="log">log</button>
+        <button type="button" class="operator sci-op" data-op="sqrt">&radic;</button>
+        <button type="button" class="operator sci-op" data-op="sqr">x<sup>2</sup></button>
+        <button type="button" class="operator sci-op" data-op="reciprocal">1/x</button>
+        <button type="button" class="operator sci-op" data-op="factorial">x!</button>
+        <button type="button" class="operator sci-op" data-op="pi">&pi;</button>
+        <button type="button" class="operator sci-op" data-op="e">e</button>
+        <button type="button" class="operator sci-op" data-op="percent">%</button>
+        <!-- The existing x^y button is below, it's also a scientific function -->
+        <!-- Consider moving x^y here for better grouping in a future refactor -->
+        <button type="button" class="operator sci-op" data-op="power">x<sup>y</sup></button> <!-- Moved x^y here, changed data-op to match JS -->
+        <button type="button" class="operator sci-op" data-op="ans">Ans</button> <!-- Bonus: Ans button -->
+        <button type="button" class="operator sci-op" data-op="rand">Rand</button> <!-- Bonus: Rand button -->
+
       </div>
-      <div class="numbers">
-        <div class="digit">
-          1
-        </div>
-        <div class="digit">
-          2
-        </div>
-        <div class="digit">
-          3
-        </div>
-        <div class="digit">
-          4
-        </div>
-        <div class="digit">
-          5
-        </div>
-        <div class="digit">
-          6
-        </div>
-        <div class="digit">
-          7
-        </div>
-        <div class="digit">
-          8
-        </div>
-        <div class="digit">
-          9
-        </div>
-        <div class="digit">
-          0
-        </div>
-        <div class="clear-calc">
-          <div class="clearBtn">
-            CLEAR
+      <div class="standard-buttons"> <!-- New container for standard ops and numbers -->
+        <div class="operators">
+        <button type="button" class="operator" data-op="decimal">.
+        </button>
+        <button type="button" class="operator" data-op="posNeg">+/-
+        </button>
+        <button type="button" class="operator" data-op="add">+
+        </button>
+        <button type="button" class="operator" data-op="subtract">-
+        </button>
+        <button type="button" class="operator" data-op="multiply">x
+        </button>
+        <button type="button" class="operator" data-op="divide">&divide;
+        </button>
+        </div> <!-- Close operators -->
+        <div class="numbers">
+          <button type="button" class="digit">
+            1
+          </button>
+          <button type="button" class="digit">
+            2
+          </button>
+          <button type="button" class="digit">
+            3
+          </button>
+          <button type="button" class="digit">
+            4
+          </button>
+          <button type="button" class="digit">
+            5
+          </button>
+          <button type="button" class="digit">
+            6
+          </button>
+          <button type="button" class="digit">
+            7
+          </button>
+          <button type="button" class="digit">
+            8
+          </button>
+          <button type="button" class="digit">
+            9
+          </button>
+          <button type="button" class="digit">
+            0
+          </button>
+          <div class="clear-calc">
+            <button type="button" class="clearBtn">
+              CLEAR
+            </button>
+            <button type="button" class="calcBtn">
+              =
+            </button>
           </div>
-          <div class="calcBtn">
-            =
-          </div>
-        </div>
+          </div> <!-- Close numbers -->
+      </div> <!-- Close standard-buttons -->
       </div>
     </div>
-  </div>
-  <div class="footer">
+  </main>
+  <footer class="footer">
     This page was made by <strong>Nicholas Simpson &copy;</strong> Thanks for checking it out
-  </div>
+  </footer>
 </body>
 
 </html>

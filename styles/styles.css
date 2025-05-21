@@ -19,7 +19,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: monospace; /* Fallback font */
-  background: linear-gradient(45deg, rgb(165, 237, 234), cornsilk 61%, rgb(243, 185, 227));
+  background: var(--color-background);
   min-height: 100vh; /* Use min-height to allow content to expand if needed */
   width: 100vw;
   padding: 1rem 0; /* Use rem for scalable padding */
@@ -36,20 +36,21 @@ body {
   grid-template-rows: 1fr 4fr;
   /* Row 1 for screen, Row 2 for buttons */
   justify-content: center;
-  align-items: center;
-  background-color: lightgray;
+  align-items: stretch;
+  background-color: var(--color-calculator-body);
   width: min(550px, 95vw); /* Allow it to shrink and have a small margin on very small screens */
-  box-shadow: 0px 0px 2px hotpink;
+  box-shadow: 0px 0px 2px var(--color-calculator-body-shadow);
   height: max(500px, 70vh);
   padding: 15px;
 }
 
 .main-container .calculator-body .screen {
-  background-color: seashell;
+  background-color: var(--color-screen);
   font-family: "Press Start 2P", monospace;
+  color: var(--color-screen-text);
   font-size: medium;
   margin: 15px;
-  box-shadow: 0px 0px 2px black;
+  box-shadow: 0px 0px 2px var(--color-screen-shadow);
   display: flex;
   align-self: center;
   justify-self: center;
@@ -89,9 +90,8 @@ body {
   /* 3 columns for scientific buttons */
   gap: 5px;
   padding: 5px;
-  background-color: lightblue;
-  /* Example background */
-  outline: 1px solid blue;
+  background-color: var(--color-scientific-background); /* Background color */
+  outline: 1px solid var(--color-scientific-outline);
   width: 95%;
   height: 100%;
   margin: auto;
@@ -111,11 +111,11 @@ body {
   font-size: clamp(0.7rem, 2.2vw, 0.9rem); /* Responsive font size */
   padding: 2px;
   /* Add padding */
-  box-shadow: inset skyblue 1px 1px, 2px 2px dodgerblue;
+  box-shadow: inset var(--color-scientific-button-shadow-inset) 1px 1px, 2px 2px var(--color-scientific-button-shadow);
   /* Adjust shadow */
-  background: lightblue;
-  /* Match container background */
-  outline: 1px solid royalblue;
+  background: var(--color-scientific-button);
+  /* Match container background */ /* Match container outline */
+  outline: 1px solid var(--color-scientific-outline);
   /* Match container outline */
 }
 
@@ -128,10 +128,9 @@ body {
   grid-template-columns: 1fr 3fr;
   /* Column 1 for operators, Column 2 for numbers */
   gap: 5px;
-  padding: 5px;
-  background-color: silver;
-  /* Match numbers background */
-  outline: 1px solid pink;
+  padding: 3px; /* Match numbers background */
+  background-color: var(--color-standard-buttons);
+  outline: 1px solid var(--color-standard-buttons-outline);
   /* Match numbers outline */
   width: 95%;
   height: 100%;
@@ -142,13 +141,10 @@ body {
   grid-column: 1;
   /* Operators in the first column of standard-buttons */
   grid-row: 1;
-  /* Operators in the first row of standard-buttons (spans height) */
-  outline: 1px solid orange;
-  /* Keep outline */
-  background-color: lightsalmon;
-  /* Keep background */
-  font-size: medium;
-  /* Keep font size */
+  /* Operators in the first row of standard-buttons  */ /*  outline */
+  outline: 1px solid var(--color-operators-outline); /* Keep background */
+  background-color: var(--color-operators-background);
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Responsive font size */
   display: grid;
   /* Keep grid for buttons inside */
   grid-template-columns: 1fr;
@@ -164,10 +160,7 @@ body {
   /* Center buttons horizontally */
   height: 100%;
   /* Fill the height of its grid cell in .standard-buttons */
-  width: 100%;
-  /* Fill the width of its grid cell in .standard-buttons */
-  box-sizing: border-box;
-  /* Include padding and border in the element's total width and height */
+  width: 100%; /* Fill the width of its grid cell in .standard-buttons */
 }
 
 .main-container .calculator-body .operators .operator {
@@ -175,10 +168,10 @@ body {
   align-items: center; /* For better content centering */
   justify-content: center; /* For better content centering */
   text-align: center;
-  outline: 1px solid lightcoral;
-  background: lightsalmon;
-  box-shadow: inset coral 2px 2px, 4px 4px salmon;
-  height: 90%;
+  outline: 1px solid var(--color-operators-outline);
+  background: var(--color-operators-button);
+  box-shadow: inset var(--color-operators-button-shadow-inset) 2px 2px, 4px 4px var(--color-operators-button-shadow);
+  height: 100%;
   width: 90%;
   font-size: clamp(0.9rem, 2.8vw, 1.3rem); /* Responsive font size */
 }
@@ -187,11 +180,9 @@ body {
   grid-column: 2;
   /* Numbers in the second column of standard-buttons */
   grid-row: 1;
-  /* Numbers in the first row of standard-buttons (spans height) */
-  outline: 1px solid pink;
-  /* Keep outline */
-  background: silver;
-  /* Keep background */
+  /* Numbers in the first row of standard-buttons  */ /* Keep outline */
+  outline: 1px solid var(--color-numbers-outline); /* Keep background */
+  background: var(--color-numbers-background);
   display: grid;
   /* Keep grid for buttons inside */
   grid-template-columns: 1fr 1fr 1fr;
@@ -203,22 +194,19 @@ body {
   padding: 5px;
   height: 100%;
   /* Fill the height of its grid cell in .standard-buttons */
-  width: 100%;
-  /* Fill the width of its grid cell in .standard-buttons */
-  box-sizing: border-box;
-  /* Include padding and border in the element's total width and height */
+  width: 100%; /* Fill the width of its grid cell in .standard-buttons */
 }
 
 .main-container .calculator-body .numbers .digit {
-  outline: 1px solid royalblue;
-  background-color: lightblue;
+  outline: 1px solid var(--color-digit-button-outline);
+  background-color: var(--color-digit-button);
   height: 100%;
   /* Fill the height of the grid cell */
   font-weight: bold;
   font-size: clamp(1.1rem, 4vw, 1.8rem); /* Responsive font size */
   width: 100%;
   /* Fill the width of the grid cell */
-  box-shadow: inset 1px 1px skyblue, 4px 4px dodgerblue;
+  box-shadow: inset 1px 1px var(--color-digit-button-shadow-inset), 4px 4px var(--color-digit-button-shadow);
   text-align: center;
   /* Keep text align */
   display: flex;
@@ -235,7 +223,7 @@ body {
   flex-flow: row;
   justify-content: space-around;
   text-align: center;
-  font-size: medium;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem); /* Responsive font size */
   font-weight: bolder;
   width: 100%;
   /* Fill the grid cell width */
@@ -269,9 +257,9 @@ body {
 }
 
 .main-container .calculator-body .numbers .clear-calc .clearBtn {
-  outline: 1px solid goldenrod;
-  background-color: yellow;
-  box-shadow: inset gold 1px 1px, 4px 4px darkgoldenrod;
+  outline: 1px solid var(--color-clear-button-outline);
+  background-color: var(--color-clear-button);
+  box-shadow: inset var(--color-clear-button-shadow-inset) 1px 1px, 4px 4px var(--color-clear-button-shadow);
 }
 
 p {
@@ -286,11 +274,11 @@ p {
   text-align: center;
   display: block;
   margin: 2px 2px;
-  background: linear-gradient(-45deg, rgb(165, 237, 234) 0 45%, cornsilk 45% 51%, rgb(243, 185, 227) 51%);
+  background: var(--color-header-footer-background);
   font-family: "Dongle", monospace;
   font-weight: lighter;
   margin: 10px 0px;
-  text-shadow: 2px 2px 2px hotpink;
+  text-shadow: 2px 2px 2px var(--color-header-footer-text-shadow);
   z-index: 1;
   padding: 5px 20px;
 }
@@ -384,4 +372,36 @@ p {
     font-size: clamp(0.8rem, 2.5vw, 1.1rem); /* Adjust clear/calc button font size */
     min-height: 40px; /* Ensure minimum tap height */
   }
+}/* Color Variables */
+ :root {
+  --color-background: linear-gradient(45deg, rgb(165, 237, 234), cornsilk 61%, rgb(243, 185, 227));
+  --color-calculator-body: lightgray;
+  --color-calculator-body-shadow: hotpink;
+  --color-screen: seashell;
+  --color-screen-text: black;
+  --color-screen-shadow: black;
+  --color-scientific-background: lightblue;
+  --color-scientific-outline: blue;
+  --color-scientific-button: lightblue;
+  --color-scientific-button-shadow: steelblue; /* Added missing variable */
+  --color-scientific-button-shadow-inset: skyblue;
+  --color-standard-buttons: silver;
+  --color-standard-buttons-outline: pink;
+  --color-operators-background: lightsalmon;
+  --color-operators-outline: orange;
+  --color-operators-button: lightsalmon;
+  --color-operators-button-shadow-inset: coral;
+  --color-operators-button-shadow: salmon;
+  --color-numbers-background: silver;
+  --color-numbers-outline: pink;
+  --color-digit-button: lightblue;
+  --color-digit-button-outline: blue;
+  --color-digit-button-shadow-inset: skyblue;
+  --color-digit-button-shadow: dodgerblue;
+  --color-clear-button: yellow;
+  --color-clear-button-outline: goldenrod;
+  --color-clear-button-shadow-inset: gold;
+  --color-clear-button-shadow: darkgoldenrod;
+  --color-header-footer-background: linear-gradient(-45deg, rgb(165, 237, 234) 0 45%, cornsilk 45% 51%, rgb(243, 185, 227) 51%);
+  --color-header-footer-text-shadow: hotpink;
 }

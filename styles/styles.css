@@ -1,18 +1,32 @@
+/* Apply box-sizing to all elements for more predictable layouts */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0; /* Remove default body margin */
+}
+
 .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: monospace;
+  font-family: monospace; /* Fallback font */
   background: linear-gradient(45deg, rgb(165, 237, 234), cornsilk 61%, rgb(243, 185, 227));
-  height: max(800px, 100vh);
+  min-height: 100vh; /* Use min-height to allow content to expand if needed */
   width: 100vw;
-  padding: 3vh 0px;
+  padding: 1rem 0; /* Use rem for scalable padding */
 }
 
 .main-container * {
-  margin: auto;
   border-radius: 9px;
-  gap: 3px;
 }
 
 .main-container .calculator-body {
@@ -24,14 +38,10 @@
   justify-content: center;
   align-items: center;
   background-color: lightgray;
-  width: min(550px, 100vw);
+  width: min(550px, 95vw); /* Allow it to shrink and have a small margin on very small screens */
   box-shadow: 0px 0px 2px hotpink;
   height: max(500px, 70vh);
   padding: 15px;
-}
-
-.main-container .calculator-body p {
-  margin-top: 27%;
 }
 
 .main-container .calculator-body .screen {
@@ -49,6 +59,7 @@
   /* Screen is in the first row */
   width: 90%;
   height: 85%;
+  min-height: 70px; /* Ensure a minimum height for readability */
   justify-content: flex-end;
   align-items: flex-end;
   flex-wrap: nowrap;
@@ -57,7 +68,7 @@
 }
 
 .main-container .calculator-body .screen .memory-storage {
-  font-size: smaller;
+  font-size: clamp(0.7rem, 2vw, 1rem); /* Responsive font size */
 }
 
 .main-container .calculator-body .screen div,
@@ -91,14 +102,13 @@
 }
 
 .main-container .calculator-body .scientific-operators .operator {
-  height: 90%;
-  /* Adjust as needed */
-  width: 90%;
-  /* Adjust as needed */
-  line-height: 100%;
-  /* Adjust line height for smaller buttons */
-  font-size: x-small;
-  /* Smaller font size */
+  height: 90%; /* Fill most of the cell */
+  width: 90%;  /* Fill most of the cell */
+  display: flex; /* For better content centering */
+  align-items: center; /* For better content centering */
+  justify-content: center; /* For better content centering */
+  text-align: center;
+  font-size: clamp(0.7rem, 2.2vw, 0.9rem); /* Responsive font size */
   padding: 2px;
   /* Add padding */
   box-shadow: inset skyblue 1px 1px, 2px 2px dodgerblue;
@@ -158,18 +168,19 @@
   /* Fill the width of its grid cell in .standard-buttons */
   box-sizing: border-box;
   /* Include padding and border in the element's total width and height */
-
 }
 
 .main-container .calculator-body .operators .operator {
+  display: flex; /* For better content centering */
+  align-items: center; /* For better content centering */
+  justify-content: center; /* For better content centering */
   text-align: center;
   outline: 1px solid lightcoral;
   background: lightsalmon;
   box-shadow: inset coral 2px 2px, 4px 4px salmon;
   height: 90%;
   width: 90%;
-  line-height: 100%;
-  /* Adjust line height */
+  font-size: clamp(0.9rem, 2.8vw, 1.3rem); /* Responsive font size */
 }
 
 .main-container .calculator-body .numbers {
@@ -196,8 +207,6 @@
   /* Fill the width of its grid cell in .standard-buttons */
   box-sizing: border-box;
   /* Include padding and border in the element's total width and height */
-
-  /* line-height: 500%; Removed as it can interfere with grid item sizing */
 }
 
 .main-container .calculator-body .numbers .digit {
@@ -206,14 +215,12 @@
   height: 100%;
   /* Fill the height of the grid cell */
   font-weight: bold;
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 4vw, 1.8rem); /* Responsive font size */
   width: 100%;
   /* Fill the width of the grid cell */
   box-shadow: inset 1px 1px skyblue, 4px 4px dodgerblue;
   text-align: center;
   /* Keep text align */
-  align-items: center;
-  /* Keep align items */
   display: flex;
   /* Use flex to center content */
   justify-content: center;
@@ -248,8 +255,7 @@
   /* Remove margin */
   border-radius: 9px;
   /* Keep border radius */
-  font-size: inherit;
-  /* Inherit font size from parent div */
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem); /* Adjust clear/calc button font size */
   font-weight: inherit;
   /* Inherit font weight from parent div */
   text-align: center;
@@ -275,23 +281,13 @@ p {
   user-select: none;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  width: 100vw;
-}
-
 .header,
 .footer {
   text-align: center;
   display: block;
-  height: 50px;
   margin: 2px 2px;
   background: linear-gradient(-45deg, rgb(165, 237, 234) 0 45%, cornsilk 45% 51%, rgb(243, 185, 227) 51%);
   font-family: "Dongle", monospace;
-  font-size: inherit;
   font-weight: lighter;
   margin: 10px 0px;
   text-shadow: 2px 2px 2px hotpink;
@@ -300,11 +296,92 @@ body {
 }
 
 .header {
-  font-size: x-large;
+  font-size: clamp(1.2rem, 4vw, 1.8rem); /* Responsive font size */
 }
 
 .footer {
-  font-size: small;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem); /* Responsive font size */
 }
 
-/*# sourceMappingURL=styles.css.map */
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) { /* Adjust breakpoint as needed, e.g., 600px for smaller devices */
+  .main-container {
+    padding: 0.5rem 0; /* Reduce padding on smaller screens */
+    align-items: flex-start; /* Align calculator to top on smaller screens if it overflows */
+  }
+
+  .main-container .calculator-body {
+    grid-template-columns: 1fr; /* Stack sections vertically */
+    grid-template-rows: auto auto auto; /* Screen, scientific ops, standard buttons */
+    width: min(480px, 95vw); /* Adjust max width for mobile */
+    padding: 10px;
+    max-height: 90vh; /* Prevent calculator from being too tall */
+    overflow-y: auto; /* Allow scrolling within calculator if content exceeds max-height */
+  }
+
+  .main-container .calculator-body .screen {
+    grid-column: 1 / -1; /* Span full width */
+    grid-row: 1;
+    min-height: 60px;
+    height: 15vh; /* Adjust screen height */
+    font-size: clamp(0.9rem, 3vw, 1.3rem); /* Adjust screen font size */
+    margin: 10px 5px;
+  }
+
+  .main-container .calculator-body .screen .memory-storage {
+    font-size: clamp(0.6rem, 2.5vw, 0.9rem);
+  }
+
+  .main-container .calculator-body .scientific-operators {
+    grid-column: 1 / -1; /* Span full width */
+    grid-row: 2;
+    /* Adjust columns for better fit, e.g., more columns if buttons are small enough */
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    padding: 5px;
+    width: 100%; /* Take full width of its grid area */
+  }
+
+  .main-container .calculator-body .scientific-operators .operator {
+    font-size: clamp(0.65rem, 2vw, 0.85rem); /* Smaller font for sci ops */
+    padding: 4px; /* Ensure tappable */
+    min-height: 35px; /* Ensure minimum tap height */
+  }
+
+  .main-container .calculator-body .standard-buttons {
+    grid-column: 1 / -1; /* Span full width */
+    grid-row: 3;
+    grid-template-columns: 1fr; /* Stack operators and numbers */
+    grid-template-rows: auto auto; /* One row for operators, one for numbers */
+    width: 100%; /* Take full width of its grid area */
+  }
+
+  .main-container .calculator-body .operators {
+    grid-column: 1 / -1; /* Span full width in standard-buttons */
+    grid-row: 1;
+    /* Make operators flow horizontally if space allows, or keep single column */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-rows: auto; /* Let rows be determined by content */
+    padding: 5px;
+  }
+
+  .main-container .calculator-body .operators .operator {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    min-height: 40px; /* Ensure minimum tap height */
+  }
+
+  .main-container .calculator-body .numbers {
+    grid-column: 1 / -1; /* Span full width in standard-buttons */
+    grid-row: 2;
+    padding: 5px;
+  }
+
+  .main-container .calculator-body .numbers .digit {
+    font-size: clamp(1rem, 3.5vw, 1.5rem); /* Adjust digit font size */
+    min-height: 45px; /* Ensure minimum tap height */
+  }
+
+  .main-container .calculator-body .numbers .clear-calc button {
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem); /* Adjust clear/calc button font size */
+    min-height: 40px; /* Ensure minimum tap height */
+  }
+}
